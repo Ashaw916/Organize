@@ -41,11 +41,11 @@
 				</li>
 				<li class="nav-item">
 					<a a class="nav-link" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-						aria-selected="false">Vital Info</a>
+						aria-selected="false">Vital Info Coming Soon...</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="local-tab" data-toggle="tab" href="#local" role="tab" aria-controls="local"
-						aria-selected="false">Local Officials</a>
+						aria-selected="false">Local Officials Coming Soon...</a>
 				</li>
 			</ul>
 		</div>
@@ -118,15 +118,15 @@
 			<ul class="nav nav-tabs card-header-tabs" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" id="businesses-tab" data-toggle="tab" href="#businesses" role="tab"
-						aria-controls="businesses" aria-selected="true">Businesses</a>
+						aria-controls="businesses" aria-selected="true">Donations</a>
 				</li>
 				<li class="nav-item">
 					<a a class="nav-link" id="donate-tab" data-toggle="tab" href="#donate" role="tab"
-						aria-controls="donate" aria-selected="false">Donations</a>
+						aria-controls="donate" aria-selected="false">Businesses Coming Soon...</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="petitions-tab" data-toggle="tab" href="#petitions" role="tab"
-						aria-controls="petitions" aria-selected="false">Petitions</a>
+						aria-controls="petitions" aria-selected="false">Petitions Coming Soon...</a>
 				</li>
 			</ul>
 		</div>
@@ -221,24 +221,25 @@
 	<h1 id="suggestion">SUGGESTIONS</h1>
 	<div class="card mb-5">
 		<div class="card-body">
-			<div class="form-group">
-				<form class="feedback"></form>
-				<label>Full Name</label>
-				<input type="name" class="form-control" id="name-field">
-			</div>
-			<div class="form-group">
-				<label>Suggestion</label>
-				<textarea class="form-control" id="comment-text" rows="5"></textarea>
+			<form id="suggestion">
+				<div class="form-group">
+					<label for="name-field">Name(optional)</label>
+					<input type="text" class="form-control" id="name-field">
+				</div>
+				<div class="form-group">
+					<label for="comment">Comment</label>
+					<input type="text" class="form-control" id="comment">
+				</div>
 
-			</div>
-			<a class="btn btn-primary" id="comment-submit">Submit</a>
+				<input type="submit" value="Submit" class="btn btn-primary" id="event-submit">
+			</form>
 		</div>
 	</div>
 </div>
 
 <footer role="main" class="footer mt-auto py-3" style="text-align: center; background-color:gray">
 	<div class="container">
-		<span style="color: white;">Place sticky footer content here.</span>
+		<span style="color: white;">Organize</span>
 	</div>
 </footer>
 
@@ -287,5 +288,17 @@
 		//		});
 		//
 
+
+		$("#suggestion").on("submit", function (event) {
+			event.preventDefault();
+			var input = {
+				name: $("#name-field").val(),
+				comment: $("#comment").val(),
+			}
+			console.log(input);
+			$.post("/api/feedback", input);
+			$("#name-field").val("");
+			$("#comment").val("");
+		});
 	});
 </script>

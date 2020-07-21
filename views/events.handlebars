@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/" id="logout">Logout</a>
+      <a class="navbar-brand" href="/logout" id="logout">Logout</a>
     </div>
   </div>
 </nav>
@@ -21,79 +21,131 @@
       <button class="menu-btn"><a class="nav-link" href="/feedback" style="color:black;">User Feedback</a></button>
     </div>
   </div>
-  <div class="col-md-5 main-content justify-content-md-right">
-    <h3>Add Event</h3>
+  <div class="col-md-10 main-content justify-content-md-right">
+    <h1>Manage Events</h1>
+    <div class="card-body">
+      <h3>Add Event</h3>
 
-    <form id="event-form">
-      <div class="form-group">
-        <label for="event-title">Title</label>
-        <input type="title" class="form-control" id="event-title">
-      </div>
-      <div class="form-group">
-        <label for="event-start">Start Date</label>
-        <input type="date" class="form-control" id="event-start">
-      </div>
-      <!--<div class="form-group">
+      <form id="event-form">
+        <div class="form-group">
+          <label for="event-title">Title</label>
+          <input type="title" class="form-control" id="event-title">
+        </div>
+        <div class="form-group">
+          <label for="event-start">Start Date</label>
+          <input type="date" class="form-control" id="event-start">
+        </div>
+        <!--<div class="form-group">
         <label for="event-text">Start Time</label>
         <input type="time" class="form-control" id="event-text">
       </div>-->
-      <div class="form-group">
-        <label for="event-end">End Date</label>
-        <input type="date" class="form-control" id="event-end">
-      </div>
-      <!--<div class="form-group">
+        <div class="form-group">
+          <label for="event-end">End Date</label>
+          <input type="date" class="form-control" id="event-end">
+        </div>
+        <!--<div class="form-group">
         <label for="event-text">End Time</label>
         <input type="time" class="form-control" id="event-text">
       </div>-->
-      <div class="form-group">
-        <label for="event-org">Organization</label>
-        <input type="text" class="form-control" id="event-org">
+        <div class="form-group">
+          <label for="event-org">Organization</label>
+          <input type="text" class="form-control" id="event-org">
+        </div>
+        <div class="form-group">
+          <label for="event-loc">Location</label>
+          <input type="text" class="form-control" id="event-loc">
+        </div>
+        <div class="form-group">
+          <label for="event-type">Event Type</label>
+          <select class="form-control" id="event-type" name="event-type">
+            <option value="protests">Protests</option>
+            <option value="government-events">Local Government Events</option>
+            <option value="dates">Dates</option>
+          </select>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary" id="event-submit">
+
+      </form>
+
+      <div class="table-responsive">
+        <table id="events-table" class="table table-bordered table-sm" cellspacing="0" width="100%">
+          <thead id="events-head">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Organizers</th>
+              <th>location</th>
+              <th>Type</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {{#each events}}
+            {{events}}
+            {{> eventsPartial}}
+
+            {{/each}}
+
+          </tbody>
+        </table>
+        <div class="card-body">
+          <h3>Edit Event</h3>
+
+          <form id="event-edit">
+            <div class="form-group">
+              <label for="event-id">Event ID</label>
+              <input type="text" class="form-control" id="event-id">
+            </div>
+            <div class="form-group">
+              <label for="edit-event-title">Title</label>
+              <input type="title" class="form-control" id="edit-event-title">
+            </div>
+            <div class="form-group">
+              <label for="edit-event-start">Start Date</label>
+              <input type="date" class="form-control" id="edit-event-start">
+            </div>
+            <!--<div class="form-group">
+        <label for="event-text">Start Time</label>
+        <input type="time" class="form-control" id="event-text">
+      </div>-->
+            <div class="form-group">
+              <label for="edit-event-end">End Date</label>
+              <input type="date" class="form-control" id="edit-event-end">
+            </div>
+            <!--<div class="form-group">
+        <label for="event-text">End Time</label>
+        <input type="time" class="form-control" id="event-text">
+      </div>-->
+            <div class="form-group">
+              <label for="edit-event-org">Organization</label>
+              <input type="text" class="form-control" id="edit-event-org">
+            </div>
+            <div class="form-group">
+              <label for="edit-event-loc">Location</label>
+              <input type="text" class="form-control" id="edit-event-loc">
+            </div>
+            <div class="form-group">
+              <label for="edit-event-type">Event Type</label>
+              <select class="form-control" id="edit-event-type" name="edit-event-type">
+                <option value="protests">Protests</option>
+                <option value="government-events">Local Government Events</option>
+                <option value="dates">Dates</option>
+              </select>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" id="event-submit">
+
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="event-loc">Location</label>
-        <input type="text" class="form-control" id="event-loc">
-      </div>
-      <div class="form-group">
-        <label for="event-type">Event Type</label>
-        <select class="form-control" id="event-type" name="event-type">
-          <option value="protests">Protests</option>
-          <option value="government-events">Local Government Events</option>
-          <option value="dates">Dates</option>
-        </select>
-      </div>
-      <input type="submit" value="Submit" class="btn btn-primary" id="event-submit">
-
-    </form>
-
-    <h3>Edit Event</h3>
-
-    <div class="table-responsive">
-      <table id="events-table" class="table table-bordered table-sm" cellspacing="0" width="100%">
-        <thead id="events-head">
-          <tr>
-            <th>Title</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Organizers</th>
-            <th>location</th>
-            <th>Type</th>
-            <th>Remove</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {{#each events}}
-          {{events}}
-          {{> eventsPartial}}
-
-          {{/each}}
-
-        </tbody>
-      </table>
     </div>
-
   </div>
+</div>
+
+</div>
 </div>
 
 
@@ -102,6 +154,7 @@
 <script type="text/javascript" src="js/members.js"></script>
 <script>
   $(document).ready(function () {
+
     $("#event-form").on("submit", function (event) {
       event.preventDefault();
       var input = {
@@ -115,13 +168,40 @@
 
       console.log(input);
       $.post("/api/events", input);
-      $("#event-title").val();
-      $("#event-start").val();
-      $("#event-end").val();
-      $("#event-org").val();
-      $("#event-loc").val();
-      $("#event-type").val();
-    })
+      $("#event-title").val("");
+      $("#event-start").val("");
+      $("#event-end").val("");
+      $("#event-org").val("");
+      $("#event-loc").val("");
+      $("#event-type").val("");
+    });
+
+    $("#event-edit").on("submit", function (event) {
+      event.preventDefault();
+      var editInput = {
+        id: $("#event-id").val(),
+        title: $("#edit-event-title").val(),
+        start: $("#edit-event-start").val(),
+        end: $("#edit-event-end").val(),
+        groupId: $("#edit-event-org").val(),
+        location: $("#edit-event-loc").val(),
+        type: $("#edit-event-type").val(),
+      }
+      console.log(editInput);
+      $.ajax({
+        method: "PUT",
+        url: "/api/events",
+        data: editInput
+      });
+      $("#event-id").val("");
+      $("#edit-event-title").val("");
+      $("#edit-event-start").val("");
+      $("#edit-event-end").val("");
+      $("#edit-event-org").val("");
+      $("#edit-event-loc").val("");
+      $("#edit-event-type").val("");
+
+    });
   });
 </script>
 

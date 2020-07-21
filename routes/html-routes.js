@@ -93,6 +93,7 @@ module.exports = function(app) {
       var hbsObject = {
         events: eventResults.map((elem) => {
           return {
+            id: elem.id,
             title: elem.title,
             start: elem.start,
             end: elem.end,
@@ -116,6 +117,7 @@ module.exports = function(app) {
       var hbsObject = {
         articles: articleResults.map((elem) => {
           return {
+            id: elem.id,
             article_title: elem.article_title,
             article_author: elem.article_author,
             article_source: elem.article_source,
@@ -139,6 +141,7 @@ module.exports = function(app) {
       var hbsObject = {
         links: linkResults.map((elem) => {
           return {
+            id: elem.id,
             link_title: elem.link_title,
             link_text: elem.link_text,
             link_type: elem.link_type,

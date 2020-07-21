@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/" id="logout">Logout</a>
+      <a class="navbar-brand" href="/logout" id="logout">Logout</a>
     </div>
   </div>
 </nav>
@@ -23,34 +23,37 @@
   </div>
 
   <div class="col-md-10 main-content justify-content-md-right">
-    <div class="card-body">
-        <h3>Add Article</h3>
-
-        <form id="article-form">
-          <div class="form-group">
-            <label for="article-text">Title</label>
-            <input type="text" class="form-control title" id="article_title" name="article_title">
-          </div>
-          <div class="form-group">
-            <label for="article-labels">Section</label>
-            <select class="form-control" id="article-labels" name="article-labels">
-              <option value="stories">Stories</option>
-              <option value="vital-info">Vital Info</option>
-              <option value="local-officials">Local Officials</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="article-body">Article body</label>
-            <textarea class="form-control" id="article-text" rows="5"></textarea></textarea name="article-text">
-          </div>
-          <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
-        </form>
-      </div>
     <h1>Manage Articles</h1>
+    <div class="card-body">
+
+      <h3>Add Article</h3>
+
+      <form id="article-form">
+        <div class="form-group">
+          <label for="article-text">Title</label>
+          <input type="text" class="form-control title" id="article_title" name="article_title">
+        </div>
+        <div class="form-group">
+          <label for="article-labels">Section</label>
+          <select class="form-control" id="article-labels" name="article-labels">
+            <option value="stories">Stories</option>
+            <option value="vital-info">Vital Info</option>
+            <option value="local-officials">Local Officials</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="article-body">Article body</label>
+          <textarea class="form-control" id="article-text" rows="5"></textarea></textarea name="article-text">
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
+      </form>
+    </div>
+
     <div class="table-responsive">
       <table id="articles-table" class="table table-bordered table-sm " cellspacing="0" width="100%">
         <thead id="articles-head">
           <tr>
+            <th>ID</th>
             <th>Title</th>
             <th>Author</th>
             <th>Source</th>
@@ -76,6 +79,10 @@
 
         <form id="article-form">
           <div class="form-group">
+            <label for="article-id">Article ID</label>
+            <input type="text" class="form-control" id="article-id">
+          </div>
+          <div class="form-group">
             <label for="article-text">Title</label>
             <input type="text" class="form-control" id="article-text">
           </div>
@@ -89,7 +96,7 @@
           </div>
           <div class="form-group">
             <label for="article-body">Article body</label>
-            <textarea class="form-control" id="article-text" rows="5"></textarea></textarea>
+            <textarea class="form-control" id="article-body" rows="5"></textarea></textarea>
             <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
           </div>
         </form>
@@ -112,13 +119,33 @@
         article_body: $("#article-text").val(),
         article_type: $("#article-labels").val(),
       }
-
       console.log(input);
       $.post("/api/articles", input);
       $("#article_title").val("");
       $("#article-text").val("");
       $("#article-labels").val("");
-    })
+    });
+
+    $("#article-form").on("click", function (event) {
+      event.preventDefault();
+      var editInput = {
+        id: $("#article-id").val(),
+        article_title: $("#article-text").val(),
+        article_type: $("#article-labels").val(),
+        article_body: $("#article-body").val(),
+      }
+      console.log(editInput);
+      $.ajax({
+        method: "PUT",
+        url: "/api/articles",
+        data: editInput
+      });
+      $("#article-id").val("");
+      $("#article-text").val("");
+      $("#article-labels").val("");
+      $("#article-body").val("");
+
+    });
   });
 </script>
 </body>

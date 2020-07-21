@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/" id="logout">Logout</a>
+      <a class="navbar-brand" href="/logout" id="logout">Logout</a>
     </div>
   </div>
 </nav>
@@ -52,6 +52,7 @@
         <table id="feedback-table" class="table table-bordered table-sm " cellspacing="0" width="100%">
           <thead id="feedback-head">
             <tr>
+              <th>ID</th>
               <th>Title</th>
 
               <th>Link</th>
@@ -77,6 +78,10 @@
     <h3>Edit Link</h3>
 
     <form id="link-form">
+      <div class="form-group">
+        <label for="link-id">Link ID</label>
+        <input type="text" class="form-control" id="link-id">
+      </div>
       <div class="form-group">
         <label for="link-text">Link text</label>
         <input type="text" class="form-control" id="link-text">
@@ -109,6 +114,7 @@
 
 
   $(document).ready(function () {
+
     $("#link-add").on("submit", function (event) {
       event.preventDefault();
       var input = {
@@ -116,14 +122,33 @@
         link_text: $("#URL-link").val(),
         link_type: $("#link-labels").val()
       }
-
       console.log(input);
       $.post("/api/links", input);
       $("#link-title").val(""),
         $("#URL-link").val(""),
         $("#link-labels").val("")
-    })
-  });
+    });
 
+    $("#link-form").on("submit", function (event) {
+      event.preventDefault();
+      var editInput = {
+        id: $("#link-id").val(),
+        link_title: $("#link-text").val(),
+        link_text: $("#link-URL").val(),
+        link_type: $("#link-labels").val(),
+      }
+      console.log(editInput);
+      $.ajax({
+        method: "PUT",
+        url: "/api/links",
+        data: editInput
+      });
+      $("#link-id").val("");
+        $("#link-text").val("");
+        $("#link-URL").val("");
+        $("#link-labels").val("");
+    });
+  });
+   
 </script>
 </body>
