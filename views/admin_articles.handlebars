@@ -22,7 +22,30 @@
     </div>
   </div>
 
-  <div class="col-md-12 main-content justify-content-md-right">
+  <div class="col-md-10 main-content justify-content-md-right">
+    <div class="card-body">
+        <h3>Add Article</h3>
+
+        <form id="article-form">
+          <div class="form-group">
+            <label for="article-text">Title</label>
+            <input type="text" class="form-control title" id="article_title" name="article_title">
+          </div>
+          <div class="form-group">
+            <label for="article-labels">Section</label>
+            <select class="form-control" id="article-labels" name="article-labels">
+              <option value="stories">Stories</option>
+              <option value="vital-info">Vital Info</option>
+              <option value="local-officials">Local Officials</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="article-body">Article body</label>
+            <textarea class="form-control" id="article-text" rows="5"></textarea></textarea name="article-text">
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
+        </form>
+      </div>
     <h1>Manage Articles</h1>
     <div class="table-responsive">
       <table id="articles-table" class="table table-bordered table-sm " cellspacing="0" width="100%">
@@ -47,31 +70,6 @@
 
         </tbody>
       </table>
-
-
-      <div class="card-body">
-        <h3>Add Article</h3>
-
-        <form id="article-form">
-          <div class="form-group">
-            <label for="article-text">Title</label>
-            <input type="text" class="form-control title" id="article_title" name="article_title">
-          </div>
-          <div class="form-group">
-            <label for="article-labels">Section</label>
-            <select class="form-control" id="article-labels" name="article-labels">
-              <option value="stories">Stories</option>
-              <option value="vital-info">Vital Info</option>
-              <option value="local-officials">Local Officials</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="article-body">Article body</label>
-            <textarea class="form-control" id="article-text" rows="5"></textarea></textarea name="article-text">
-          </div>
-          <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
-        </form>
-      </div>
 
       <div class="card-body">
         <h3>Edit Article</h3>

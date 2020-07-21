@@ -21,48 +21,22 @@
       <button class="menu-btn"><a class="nav-link" href="/feedback" style="color:black;">User Feedback</a></button>
     </div>
   </div>
-  <div class="col-md-5 main-content justify-content-md-right">
+  <div class="col-md-10 main-content justify-content-md-right">
 
     <h1>Manage Links</h1>
 
     <div class="card-body">
       <h3>Add Link</h3>
 
-      <form id="link-form">
+      <form id="link-add">
         <div class="form-group">
-          <label for="link-text">Link text</label>
-          <input type="text" class="form-control" id="link-text">
+          <label for="link-title">Link Title</label>
+          <input type="text" class="form-control" id="link-title">
         </div>
         <div class="form-group">
-          <label for="rel-link">URL</label>
-          <input type="text" class="form-control" id="rel-link">
+          <label for="URL-link">URL</label>
+          <input type="text" class="form-control" id="URL-link">
         </div>
-
-      </div>
-      <div class="col-md-5 main-content justify-content-md-right">
-                <div class="table-responsive">
-                    <table id="feedback-table" class="table table-bordered table-sm " cellspacing="0" width="100%">
-                        <thead id="feedback-head">
-                            <tr>
-                                <th>Title</th>
-
-                                <th>Link</th>
-
-                                <th>Type</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {{#each links}}
-                            {{links}}
-                            {{> linkPartial}}
-
-                            {{/each}}
-
-                        </tbody>
-                    </table>
-                </div>
-
         <div class="form-group">
           <label for="link-labels">Section</label>
           <select class="form-control" id="link-labels" name="link-labels">
@@ -71,66 +45,58 @@
             <option value="petitions">Petitions</option>
           </select>
         </div>
-        <a class="btn btn-primary" id="link-submit">Submit</a>
+        <input type="submit" value="Submit" class="btn btn-primary" id="event-submit">
       </form>
-    </div>
-
-    <div class="card-body">
-      <h3>Edit Link</h3>
 
       <div class="table-responsive">
-        <table id="edit-links" class="table table-bordered table-sm " cellspacing="0" width="100%">
-          <thead id="edit-links-head">
+        <table id="feedback-table" class="table table-bordered table-sm " cellspacing="0" width="100%">
+          <thead id="feedback-head">
             <tr>
-              <th>ID</th>
-              <th>Link Title</th>
-              <th>Delete</th>
-              <th>Edit</th>
+              <th>Title</th>
+
+              <th>Link</th>
+
+              <th>Type</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Test Links</td>
-              <td><button type="button" class="btn btn-danger">Delete</button>
-              </td>
-              <td><button type="button" class="btn btn-info">Edit</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Other Links</td>
-              <td><button type="button" class="btn btn-danger">Delete</button>
-              </td>
-              <td><button type="button" class="btn btn-info">Edit</button>
-              </td>
-            </tr>
-          </tbody>
 
+            {{#each links}}
+            {{links}}
+            {{> linkPartial}}
+
+            {{/each}}
+
+          </tbody>
         </table>
       </div>
-
-      <form id="link-form">
-        <div class="form-group">
-          <label for="link-text">Link text</label>
-          <input type="text" class="form-control" id="link-text">
-        </div>
-        <div class="form-group">
-          <label for="rel-link">URL</label>
-          <input type="text" class="form-control" id="rel-link">
-        </div>
-        <div class="form-group">
-          <label for="link-labels">Section</label>
-          <select class="form-control" id="link-labels" name="link-labels">
-            <option value="businesses">Businesses</option>
-            <option value="donations">Donations</option>
-            <option value="petitions">Petitions</option>
-          </select>
-        </div>
-        <a class="btn btn-primary" id="link-submit">Submit</a>
-      </form>
     </div>
+
+    <h3>Edit Link</h3>
+
+    <form id="link-form">
+      <div class="form-group">
+        <label for="link-text">Link text</label>
+        <input type="text" class="form-control" id="link-text">
+      </div>
+      <div class="form-group">
+        <label for="link-URL">URL</label>
+        <input type="text" class="form-control" id="link-URL">
+      </div>
+      <div class="form-group">
+        <label for="link-labels">Section</label>
+        <select class="form-control" id="link-labels" name="link-labels">
+          <option value="businesses">Businesses</option>
+          <option value="donations">Donations</option>
+          <option value="petitions">Petitions</option>
+        </select>
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary" id="put-submit">
+    </form>
   </div>
+</div>
 
 </div>
 </div>
@@ -141,29 +107,23 @@
 <script type="text/javascript" src="js/members.js"></script>
 <script>
 
+
   $(document).ready(function () {
-
-    $("h3").css("color", "red")
-    $("#link-form").on("submit", function (event) {
+    $("#link-add").on("submit", function (event) {
       event.preventDefault();
-      console.log("Success");
-      const addLink = {
-        $("#link-text").val().trim(),
-        $("#rel-link").val().trim(),
-        $("#link-labels").val().trim()
-      };
-      $.ajax("/api/links", {
-        type: "POST",
-        data: addLink
-      }).then(
-        function () {
-          console.log("success")
-          location.reload();
-        }
-      )
-    });
+      var input = {
+        link_title: $("#link-title").val(),
+        link_text: $("#URL-link").val(),
+        link_type: $("#link-labels").val()
+      }
 
-  })
+      console.log(input);
+      $.post("/api/links", input);
+      $("#link-title").val(""),
+        $("#URL-link").val(""),
+        $("#link-labels").val("")
+    })
+  });
 
 </script>
 </body>
