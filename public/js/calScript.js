@@ -16,8 +16,9 @@ $.get("/api/events", (eventsData) => {
       events: [...eventsData.events]
     // 
     });
-  
+   
     calendar.render();
+    
   });
 });
 

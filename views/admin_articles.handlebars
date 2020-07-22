@@ -28,10 +28,10 @@
 
       <h3>Add Article</h3>
 
-      <form id="article-form">
+      <form id="article-add">
         <div class="form-group">
-          <label for="article-text">Title</label>
-          <input type="text" class="form-control title" id="article_title" name="article_title">
+          <label for="article-title">Title</label>
+          <input type="text" class="form-control" id="article-title">
         </div>
         <div class="form-group">
           <label for="article-labels">Section</label>
@@ -83,20 +83,20 @@
             <input type="text" class="form-control" id="article-id">
           </div>
           <div class="form-group">
-            <label for="article-text">Title</label>
-            <input type="text" class="form-control" id="article-text">
+            <label for="edit-article-text">Title</label>
+            <input type="text" class="form-control" id="edit-article-text">
           </div>
           <div class="form-group">
-            <label for="article-labels">Section</label>
-            <select class="form-control" id="article-labels" name="article-labels">
+            <label for="edit-article-labels">Section</label>
+            <select class="form-control" id="edit-article-labels" name="edit-article-labels">
               <option value="stories">Stories</option>
               <option value="vital-info">Vital Info</option>
               <option value="local-officials">Local Officials</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="article-body">Article body</label>
-            <textarea class="form-control" id="article-body" rows="5"></textarea></textarea>
+            <label for="edit-article-body">Article body</label>
+            <textarea class="form-control" id="edit-article-body" rows="5"></textarea></textarea>
             <input type="submit" value="Submit" class="btn btn-primary" id="article-submit">
           </div>
         </form>
@@ -112,27 +112,27 @@
 <script>
 
   $(document).ready(function () {
-    $("#article-form").on("submit", function (event) {
+    $("#article-add").on("submit", function (event) {
       event.preventDefault();
       var input = {
-        article_title: $("#article_title").val(),
+        article_title: $("#article-title").val(),
         article_body: $("#article-text").val(),
         article_type: $("#article-labels").val(),
       }
       console.log(input);
       $.post("/api/articles", input);
-      $("#article_title").val("");
+      $("#article-title").val("");
       $("#article-text").val("");
       $("#article-labels").val("");
     });
 
-    $("#article-form").on("click", function (event) {
+    $("#article-form").on("submit", function (event) {
       event.preventDefault();
       var editInput = {
         id: $("#article-id").val(),
-        article_title: $("#article-text").val(),
-        article_type: $("#article-labels").val(),
-        article_body: $("#article-body").val(),
+        article_title: $("#edit-article-text").val(),
+        article_type: $("#edit-article-labels").val(),
+        article_body: $("#edit-article-body").val(),
       }
       console.log(editInput);
       $.ajax({
@@ -141,10 +141,10 @@
         data: editInput
       });
       $("#article-id").val("");
-      $("#article-text").val("");
-      $("#article-labels").val("");
-      $("#article-body").val("");
-
+      $("#edit-article-text").val("");
+      $("#edit-article-labels").val("");
+      $("#edit-article-body").val("");
+      location.reload(true);
     });
   });
 </script>
