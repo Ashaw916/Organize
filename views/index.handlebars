@@ -248,7 +248,6 @@
 
 
 		$.get("/api/articles", (articlesData) => {
-			console.log(articlesData.articles.article_title);
 			var data = articlesData.articles
 			for (var i = 0; i < data.length; ++i) {
 				$("#stories-card").append('<h3>' + data[i].article_title + '</h3>');
@@ -259,11 +258,9 @@
 		});
 
 		$.get("/api/links", (linksData) => {
-			console.log(linksData.links.link_title);
 			var data = linksData.links
 			for (var i = 0; i < data.length; ++i) {
 				$("#link-card").append(`<h4><a href=${data[i].link_text}>${data[i].link_title}</a></h4>`);
-				//			$("#link-card").append('<p>' + data[i].link_text + '</p>');
 			}
 		});
 
@@ -301,17 +298,17 @@
 			$("#comment").val("");
 		});
 
-		$("#calendar").on("click", function (event) {
-			event.preventDefault();
-			$.get("/api/events", (eventsData) => {
-				//console.log(eventsData);
-				for (var i = 0; i < eventsData.length; ++i) {
-									console.log(eventsData);
-					if (eventsData[i].title = $("${this}.event-title")) {
-						alert(eventsData);
-					}
-				}
-			})
-		})
+	//	$("#calendar").on("click", function (event) {
+	//		event.preventDefault();
+	//		$.get("/api/events", (eventsData) => {
+	//			//console.log(eventsData);
+	//			for (var i = 0; i < eventsData.length; ++i) {
+	//								console.log(eventsData);
+	//				if (eventsData[i].title = $("${this}.event-title")) {
+	//					alert(eventsData);
+	//				}
+	//			}
+	//		})
+	//	})
 	});
 </script>
