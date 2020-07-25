@@ -1,7 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
 $.get("/api/events", (eventsData) => {
     console.log(eventsData)
 
-    document.addEventListener('DOMContentLoaded', function() {
+   
 
     var calendarEl = document.getElementById('calendar');
   
@@ -18,6 +19,7 @@ $.get("/api/events", (eventsData) => {
     });
   
     calendar.render();
+    
   });
 });
 
