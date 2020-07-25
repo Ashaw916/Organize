@@ -254,7 +254,6 @@
 				$("#stories-card").append('<p>' + data[i].article_body + '</p>');
 				$("#stories-card").append('<p style="font-size: .75rem">' + "Author: " + data[i].article_author + '</p>');
 				$("#stories-card").append("<p style='font-size: .75rem; color: lightgrey;'>" + data[i].article_source + '</p>');
-				location.reload(true);
 			}
 		});
 
@@ -262,7 +261,6 @@
 			var data = linksData.links
 			for (var i = 0; i < data.length; ++i) {
 				$("#link-card").append(`<h4><a href=${data[i].link_text}>${data[i].link_title}</a></h4>`);
-				location.reload(true);
 			}
 		});
 
@@ -300,17 +298,17 @@
 			$("#comment").val("");
 		});
 
-		//	$("#calendar").on("click", function (event) {
-		//		event.preventDefault();
-		//		$.get("/api/events", (eventsData) => {
-		//			//console.log(eventsData);
-		//			for (var i = 0; i < eventsData.length; ++i) {
-		//								console.log(eventsData);
-		//				if (eventsData[i].title = $("${this}.event-title")) {
-		//					alert(eventsData);
-		//				}
-		//			}
-		//		})
-		//	})
+	//	$("#calendar").on("click", function (event) {
+	//		event.preventDefault();
+	//		$.get("/api/events", (eventsData) => {
+	//			//console.log(eventsData);
+	//			for (var i = 0; i < eventsData.length; ++i) {
+	//								console.log(eventsData);
+	//				if (eventsData[i].title = $("${this}.event-title")) {
+	//					alert(eventsData);
+	//				}
+	//			}
+	//		})
+	//	})
 	});
 </script>
