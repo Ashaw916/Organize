@@ -17,7 +17,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("events");
+        // console.log("events");
         res.json({ events: eventResults });
       })
       .catch();
@@ -27,8 +27,8 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log("articles");
-      console.log(articleResults);
+      // console.log("articles");
+      // console.log(articleResults);
       var hbsObject = {
         articles: articleResults.map((elem) => {
           return {
@@ -41,7 +41,7 @@ module.exports = function(app) {
           };
         }),
       };
-      console.log("articles");
+      // console.log("articles");
       res.render("admin_articles", hbsObject);
     });
   });
@@ -60,7 +60,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("events" + req);
+        // console.log("events" + req);
       })
       .catch();
   });
@@ -102,7 +102,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log(articlesResults);
+        // console.log(articlesResults);
         res.json({ articles: articlesResults });
       })
       .catch();
@@ -119,7 +119,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("articles" + req);
+        // console.log("articles" + req);
       })
       .catch();
   });
@@ -160,7 +160,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log(linkResults);
+        // console.log(linkResults);
         res.json({ links: linkResults });
       })
       .catch();
@@ -175,7 +175,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("links" + req);
+        // console.log("links" + req);
       })
       .catch();
   });
@@ -236,7 +236,7 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("feedback" + req);
+        // console.log("feedback" + req);
       })
       .catch();
   });

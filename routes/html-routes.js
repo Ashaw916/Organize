@@ -13,21 +13,21 @@ module.exports = function(app) {
         if (err) {
           throw err;
         }
-        console.log("events");
+        // console.log("events");
 
         db.Articles.findAll()
           .then(function(articleResults, err) {
             if (err) {
               throw err;
             }
-            console.log("articles");
+            // console.log("articles");
 
             db.Links.findAll()
               .then(function(linkResults, err) {
                 if (err) {
                   throw err;
                 }
-                console.log("links");
+                // console.log("links");
                 const dataObj = {
                   events: eventResults.map((elem) => {
                     return {
@@ -40,7 +40,7 @@ module.exports = function(app) {
                     };
                   }),
                   articles: articleResults.map((elem) => {
-                    console.log("articles" + articleResults);
+                    // console.log("articles" + articleResults);
                     return {
                       article_title: elem.article_title,
                       article_author: elem.article_author,
@@ -88,8 +88,8 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log("events");
-      console.log(eventResults);
+      // console.log("events");
+      // console.log(eventResults);
       var hbsObject = {
         events: eventResults.map((elem) => {
           return {
@@ -112,8 +112,8 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log("articles");
-      console.log(articleResults);
+      // console.log("articles");
+      // console.log(articleResults);
       var hbsObject = {
         articles: articleResults.map((elem) => {
           return {
@@ -126,7 +126,7 @@ module.exports = function(app) {
           };
         }),
       };
-      console.log("articles");
+      // console.log("articles");
       res.render("admin_articles", hbsObject);
     });
   });
@@ -136,8 +136,8 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log("links");
-      console.log(linkResults);
+      // console.log("links");
+      // console.log(linkResults);
       var hbsObject = {
         links: linkResults.map((elem) => {
           return {
@@ -148,7 +148,7 @@ module.exports = function(app) {
           };
         }),
       };
-      console.log(hbsObject);
+      // console.log(hbsObject);
       res.render("admin_links", hbsObject);
     });
   });
@@ -172,15 +172,15 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-      console.log("feedback");
-      console.log(feedbackResults);
+      // console.log("feedback");
+      // console.log(feedbackResults);
 
       var hbsObject = {
         feedback: feedbackResults.map((elem) => {
           return { name: elem.name, comment: elem.comment };
         }),
       };
-      console.log(hbsObject);
+      // console.log(hbsObject);
       // console.log(feedbackResults);
       res.render("userFeedback", hbsObject);
       //  res.render("userFeedback", { dataObj: feedbackResults });
