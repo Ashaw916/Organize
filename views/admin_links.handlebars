@@ -19,7 +19,7 @@
       <button class="menu-btn"><a class="nav-link" href="/#" style="color:black;">Messageboard (Coming
           Soon...)</a></button>
       <button class="menu-btn"><a class="nav-link" href="/feedback" style="color:black;">User Feedback</a></button>
-                <button class="menu-btn" ><a class="nav-link" href="/logout" style="color:black;">Logout</a></button>
+      <button class="menu-btn"><a class="nav-link" href="/logout" style="color:black;">Logout</a></button>
     </div>
   </div>
   <div class="col-md-10 main-content justify-content-md-right">
@@ -128,6 +128,7 @@
       $("#link-title").val(""),
         $("#URL-link").val(""),
         $("#link-labels").val("")
+      location.reload(true);
     });
 
     $("#link-form").on("submit", function (event) {
