@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     article_title: DataTypes.STRING,
     article_author: DataTypes.STRING,
     article_source: DataTypes.STRING,
-    article_body: DataTypes.STRING,
+    article_body: DataTypes.STRING(10000000),
     article_type: DataTypes.STRING,
   });
   return Articles;
